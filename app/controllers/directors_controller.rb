@@ -10,6 +10,12 @@ class DirectorsController < ApplicationController
     render ({ :template => "directors_templates/wisest.html.erb"})
   end
 
+  def youngest
+    @youngest = Director.where.not({:dob => :nil}).order({:dob => :desc}).at(0)
+    render ({ :template => "directors_templates/youngest.html.erb"})
+  end
+
+
   #rail will prioritize what function is above, so we need to def wisest before we def the dynamic link
 
   def directors_details
